@@ -42,7 +42,11 @@ public class HelloController {
         } else {
             greeting = "Bonjour";
         }
-        return greeting + ", " + n + "!";
+        return "<html>" +
+                "<body>" +
+                "<h1>"+greeting + ", " + n + "!</h1>" +
+                "</body>" +
+                "</html>";
     }
 
     @GetMapping("hello/{name}")

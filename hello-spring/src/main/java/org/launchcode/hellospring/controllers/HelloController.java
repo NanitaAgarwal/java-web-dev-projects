@@ -44,7 +44,7 @@ public class HelloController {
         }
         return "<html>" +
                 "<body>" +
-                "<h1>"+greeting + ", " + n + "!</h1>" +
+                "<h1 style='color:blue;'>"+greeting + ", " + n + "!</h1>" +
                 "</body>" +
                 "</html>";
     }

@@ -15,5 +15,7 @@ public class Main {
 
         Temperature currentTemp = new Temperature();
         currentTemp.setFahrenheit(fahrenheit);
+        System.out.println("The temperature entered is " + fahrenheit);
+        System.out.println("The temperature set is " + currentTemp.getFahrenheit());
     }
 }

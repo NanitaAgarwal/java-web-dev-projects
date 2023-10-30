@@ -95,4 +95,16 @@ public class HelloController {
         return "hello-list";
     }
 
+    @RequestMapping (value="hello-num",method={RequestMethod.GET,RequestMethod.POST})
+    public String helloNum(Model model) {
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(-1);
+        numbers.add(0);
+        numbers.add(1);
+        model.addAttribute("numbers",numbers);
+        return "hello-num";
+//        List<Integer> numbers2 = new ArrayList<>();
+//        model.addAttribute("numbers",numbers2);
+//        return "hello-num";
+    }
 }

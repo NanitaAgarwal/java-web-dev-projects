@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+    <ul th:if = "${numbers.size()}">
+        <th:block th:each = "num : ${numbers}">
+            <li th:if = "${num}" th:text = "${num}"></li>
+        </th:block>
+        <th:block th:each = "num : ${numbers}">
+            <li th:if = "${num > 0}" th:text = "${num}"></li>
+        </th:block>
+        <th:block th:each = "num : ${numbers}">
+            <li th:if = "${num < 0}" th:text = "${num}"></li>
+        </th:block>
+        <th:block th:each = "num : ${numbers}">
+            <li th:unless = "${num}" th:text = "${num}"></li>
+        </th:block>
+        <th:block th:each = "num : ${numbers}">
+            <li th:unless = "${num >= 0}" th:text = "${num}"></li>
+        </th:block>
+        <th:block th:each = "num : ${numbers}">
+            <li th:unless = "${num <= 0}" th:text = "${num}"></li>
+        </th:block>
+    </ul>
+</body>
+</html>

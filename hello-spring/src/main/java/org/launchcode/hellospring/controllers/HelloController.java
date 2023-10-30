@@ -1,8 +1,13 @@
 package org.launchcode.hellospring.controllers;
 
+//import ch.qos.logback.core.model.Model;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class HelloController {
@@ -19,8 +24,8 @@ public class HelloController {
         return "Goodbye, "+name+"!";
     }
 
-    @RequestMapping(method={RequestMethod.GET,RequestMethod.POST},value="hello")
-//    @GetMapping("hello")
+    @RequestMapping(method={RequestMethod.GET,RequestMethod.POST},value="hello2")
+//    @GetMapping("hello2")
     @ResponseBody
     public String helloWithQuery(@RequestParam String name, @RequestParam String language) {
         if (name == null) {
@@ -31,8 +36,8 @@ public class HelloController {
 
     public static String greetMessage(String n,String l) {
         String greeting = "";
-        if(l.equals("eng")){
-            greeting = "Hello";
+        if(l.equals("fr")){
+            greeting = "Bonjour";
         } else if (l.equals("spa")) {
             greeting = "Hola";
         } else if (l.equals("hin")) {
@@ -40,7 +45,7 @@ public class HelloController {
         } else if (l.equals("tel")) {
             greeting = "Namaskaram";
         } else {
-            greeting = "Bonjour";
+            greeting = "Hello";
         }
         return "<html>" +
                 "<body>" +
@@ -50,10 +55,12 @@ public class HelloController {
     }
 
     @GetMapping("hello/{name}")
-    @ResponseBody
-    public String helloWithPath(@PathVariable String name) {
-        return "Hello, " + name + "!";
-//        return "redirect:/helloStatic";
+//    @ResponseBody
+//    public String helloWithPath(@PathVariable String name) {
+//        return "Hello, " + name + "!";
+    public String helloWithPath(@PathVariable String name,Model model) {
+        model.addAttribute("greeting","Hello, " + name + "!");
+        return "hello";
     }
 
     @GetMapping("re-direct")
@@ -64,23 +71,28 @@ public class HelloController {
     }
 
     @GetMapping("form")
-    @ResponseBody
     public String helloForm() {
-        return "<html>" +
-                "<body>" +
-//                "<form action='hello'>" + //submit a request to /hello - Default is "GET"
-                "<form action='hello' method='POST'>" + //submit a request to /hello
-                "<input type='text' name='name'>" +
-                "<select name='language'>" +
-                "<option value='eng'>English</option>" +
-                "<option value='spa'>Spanish</option>" +
-                "<option value='fr'>French</option>" +
-                "<option value='hin'>Hindi</option>" +
-                "<option value='tel'>Telugu</option>" +
-                "</select>" +
-                "<input type='submit' value='Greet Me!'>" +
-                "</form>" +
-                "</body>" +
-                "</html>";
+        return "form";
     }
+
+    @RequestMapping (value="hello",method={RequestMethod.GET,RequestMethod.POST})
+//    @ResponseBody
+//    public String hello(@RequestParam String name) {
+//        return "Hello, " + name + "!";
+    public String hello(@RequestParam String name, Model model) {
+        String greeting = "Hello, "+name+"!";
+        model.addAttribute("greeting",greeting);
+        return "hello";
+    }
+
+    @RequestMapping (value="hello-list",method={RequestMethod.GET,RequestMethod.POST})
+    public String helloList(Model model) {
+        List<String> names = new ArrayList<>();
+        names.add("LaunchCode");
+        names.add("Java");
+        names.add("JavaScript");
+        model.addAttribute("names",names);
+        return "hello-list";
+    }
+
 }

@@ -8,10 +8,14 @@
         <thead>
         <tr>
             <th>Name</th>
+            <th>Description</th>
+            <th>Address</th>
         </tr>
         </thead>
         <tr th:each = "event : ${events}">
-            <td th:text = "${event}">Default_Event</td>
+            <td th:text = "${event.Key}">Default_Event</td>
+            <td th:text = "${event.Value}">Default_Description</td>
+            <td th:replace = "fragments :: address">Default_Address</td>
         </tr>
     </table>
 </body>
